@@ -172,13 +172,24 @@ h2 { font-family: var(--f-disp); font-size: clamp(2rem, 4vw, 3.2rem); text-trans
 .btn-secondary { font-family:var(--f-mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; padding:.9rem 1.6rem; border:1px solid var(--gold); color:var(--gold); text-decoration:none; transition:background .2s, color .2s; }
 .btn-secondary:hover { background:var(--gold); color:var(--bg); }
 
-/* ── LIGHTBOX ── */
-.lightbox { position:fixed; inset:0; z-index:600; background:rgba(3,12,24,0); display:flex; align-items:center; justify-content:center; pointer-events:none; transition:background .3s; }
-.lightbox.open { background:rgba(3,12,24,.95); pointer-events:all; }
-.lightbox img { max-width:90vw; max-height:85vh; object-fit:contain; opacity:0; transform:scale(.96); transition:opacity .3s, transform .3s; }
-.lightbox.open img { opacity:1; transform:scale(1); }
-.lb-close { position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:var(--muted); font-size:1.5rem; cursor:pointer; transition:color .2s; }
-.lb-close:hover { color:#fff; }
+/* ── CAROUSEL ── */
+.carousel-wrap { position:relative; margin-bottom:1.25rem; }
+.carousel-track-outer { overflow:hidden; border:1px solid var(--line); background:var(--line); }
+.carousel-track { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; }
+.carousel-item { position:relative; overflow:hidden; aspect-ratio:4/3; background:rgba(0,20,50,.5); }
+.carousel-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease, opacity .4s ease; }
+.carousel-item:hover img { transform:scale(1.04); opacity:.85; }
+.carousel-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.75rem; color:var(--muted); font-family:var(--f-mono); font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; cursor:default; }
+.carousel-placeholder svg { opacity:.3; }
+.carousel-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(3,12,24,.75); border:1px solid var(--line); color:var(--gold); width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:10; transition:background .2s,border-color .2s; backdrop-filter:blur(4px); }
+.carousel-btn:hover { background:rgba(244,168,0,.15); border-color:var(--gold); }
+.carousel-btn:disabled { opacity:.3; cursor:default; }
+.carousel-btn.prev { left:-20px; } .carousel-btn.next { right:-20px; }
+.carousel-dots { display:flex; justify-content:center; gap:.5rem; margin-top:.85rem; }
+.carousel-dot { width:6px; height:6px; background:var(--muted); border:none; cursor:pointer; padding:0; transition:background .2s,transform .2s; }
+.carousel-dot.active { background:var(--gold); transform:scale(1.3); }
+/* Lightbox */
+
 
 /* ── FOOTER ── */
 .page-footer { border-top:1px solid var(--line); padding:1.5rem 3rem; font-family:var(--f-mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
@@ -196,18 +207,82 @@ h2 { font-family: var(--f-disp); font-size: clamp(2rem, 4vw, 3.2rem); text-trans
   .stats-row { grid-template-columns: 1fr; }
   .photo-grid { grid-template-columns: 1fr; }
 }
+
+/* ── SHARED NAV (mode-aware) ── */
+:root {
+  --gold:    #F4A800;
+  --muted:   #7a91ab;
+  --line:    rgba(240,244,248,0.14);
+  --bg:      #1c2e44;
+  --navy-lt: #2f4c6e;
+  --white:   #f0f4f8;
+  --f-mono:  'JetBrains Mono', 'Courier New', monospace;
+  --f-ui:    'Syne', system-ui, sans-serif;
+}
+body.dark-mode {
+  --bg:      #030c18;
+  --navy-lt: #08305e;
+  --line:    rgba(240,244,248,0.08);
+  --muted:   #7a91ab;
+}
+body { transition: background 0.5s ease; }
+.shared-nav {
+  position: sticky; top: 0; z-index: 200;
+  height: 52px; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 2.5rem;
+  background: rgba(3,12,24,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+.shared-nav .nav-brand {
+  font-family: var(--f-ui); font-weight: 700; font-size: .9rem;
+  color: var(--white); text-decoration: none;
+  display: flex; align-items: center; gap: .6rem;
+}
+.shared-nav .nav-brand span { color: var(--gold); }
+.shared-nav .nav-brand-back {
+  font-family: var(--f-mono); font-size: .6rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  display: flex; align-items: center; gap: .5rem;
+  transition: color .2s;
+}
+.shared-nav .nav-brand-back:hover { color: var(--gold); }
+.shared-nav .nav-right { display: flex; align-items: center; gap: 1rem; }
+.shared-nav .mode-toggle {
+  display: flex; align-items: center; gap: .4rem;
+  background: none; border: 1px solid rgba(240,244,248,0.18);
+  cursor: pointer; padding: .35rem .6rem; color: var(--muted);
+  transition: border-color .2s, color .2s;
+}
+.shared-nav .mode-toggle:hover { border-color: var(--gold); color: var(--gold); }
+.shared-nav .mode-toggle .icon-moon { display: none; }
+body.dark-mode .shared-nav .mode-toggle .icon-sun  { display: none; }
+body.dark-mode .shared-nav .mode-toggle .icon-moon { display: block; }
+.mode-toggle-label {
+  font-family: var(--f-mono); font-size: .56rem;
+  letter-spacing: .12em; text-transform: uppercase;
+}
+@media (max-width: 600px) {
+  .shared-nav { padding: 0 1.25rem; }
+  .mode-toggle-label { display: none; }
+}
+
 </style>
 </head>
 <body>
-
-<div class="top-bar"><div class="tb-g"></div><div class="tb-n"></div><div class="tb-r"></div><div class="tb-dk"></div></div>
-
-<nav class="back-nav">
-  <a href="index.html#outreach" class="back-link">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7H1M7 1L1 7l6 6"/></svg>
-    Back to Outreach
-  </a>
+<nav class="shared-nav">
+  <a class="nav-brand-back" href="index.html" onclick="if(history.length>1){history.back();return false;}"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7H1M7 1L1 7l6 6"/></svg> Back to Main Site</a>
+  <div class="nav-right">
+    <button class="mode-toggle" aria-label="Toggle display mode">
+      <svg class="icon-moon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <span class="mode-toggle-label">Dark</span>
+    </button>
+  </div>
 </nav>
+
+<div class="tb-n"></div><div class="tb-r"></div><div class="tb-dk"></div></div>
 
 <div class="page-hero">
   <div class="hero-left-stripe"></div>
@@ -232,8 +307,8 @@ h2 { font-family: var(--f-disp); font-size: clamp(2rem, 4vw, 3.2rem); text-trans
       <div class="stat-label">Students reached</div>
     </div>
     <div class="stat-box">
-      <div class="stat-num">GE</div>
-      <div class="stat-label">Focus area · Gqeberha / Eastern Cape</div>
+      <div class="stat-num">PE</div>
+      <div class="stat-label">Focus area · Port Elizabeth / Eastern Cape</div>
     </div>
   </div>
 
@@ -274,19 +349,14 @@ h2 { font-family: var(--f-disp); font-size: clamp(2rem, 4vw, 3.2rem); text-trans
 
   <!-- Photos -->
   <div class="section-label">Photos</div>
-  <div class="photo-grid">
-    <!-- TO ADD PHOTOS: replace each placeholder div with:
-         <div class="photo-item">
-           <img src="your-photo.jpg" alt="Description" loading="lazy">
-           <div class="photo-caption">Caption text</div>
-         </div>
-    -->
-    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Add photo here</div></div>
-    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Add photo here</div></div>
-    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Add photo here</div></div>
-    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Add photo here</div></div>
+  <!-- To add photos: add objects to hsItems array in the script below -->
+  <div class="carousel-wrap" id="hs-carousel">
+    <button class="carousel-btn prev" id="hs-prev" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2L4 8l6 6"/></svg></button>
+    <div class="carousel-track-outer"><div class="carousel-track" id="hs-track"></div></div>
+    <button class="carousel-btn next" id="hs-next" aria-label="Next"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2l6 6-6 6"/></svg></button>
   </div>
-  <p class="photo-note">Photos will be added after visits. To add: upload image files to your GitHub repo, then replace the placeholder divs above with &lt;img&gt; tags pointing to your file names.</p>
+  <div class="carousel-dots" id="hs-dots"></div>
+  <p class="photo-note">Photos will be added after visits.</p>
 
   <div class="ds-rule"><div class="r-g"></div><div class="r-n"></div><div class="r-r"></div><div class="r-dk"></div></div>
 
@@ -308,39 +378,70 @@ h2 { font-family: var(--f-disp); font-size: clamp(2rem, 4vw, 3.2rem); text-trans
 
 </div>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <button class="lb-close" id="lb-close">✕</button>
-  <img id="lb-img" src="" alt="" />
-</div>
-
 <div class="page-footer">
   <span>© 2026 Nelson Mandela University · SAIEE Student Chapter</span>
-  <a href="index.html">← Back to main site</a>
+  <a href="index.html" onclick="if(history.length>1){history.back();return false;}">← Back to main site</a>
 </div>
 
 <script>
-  // Lightbox
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lb-img');
-  document.querySelectorAll('.photo-item img').forEach(img => {
-    img.addEventListener('click', () => {
-      lbImg.src = img.src;
-      lbImg.alt = img.alt;
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-  document.getElementById('lb-close').addEventListener('click', () => {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-  lb.addEventListener('click', e => {
-    if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; }
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; }
-  });
+  // Carousel & Lightbox engine
+  var lbItems = [], lbIndex = 0;
+  function placeholderSVG() { return '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'; }
+  function initCarousel(cfg) {
+    var track=document.getElementById(cfg.trackId), prev=document.getElementById(cfg.prevId), next=document.getElementById(cfg.nextId), dotsEl=document.getElementById(cfg.dotsId);
+    if(!track) return;
+    var items=cfg.items, total=items.length, pages=Math.ceil(total/3), page=0;
+    function render() {
+      track.innerHTML='';
+      var start=page*3;
+      for(var i=0;i<3;i++){
+        var item=items[start+i], div=document.createElement('div'); div.className='carousel-item';
+        if(item&&item.src){
+          var img=document.createElement('img'); img.src=item.src; img.alt=item.alt||''; img.loading='lazy';
+          div.appendChild(img);
+        } else { div.innerHTML='<div class="carousel-placeholder">'+placeholderSVG()+(item&&item.placeholder?item.placeholder:'Photos coming soon')+'</div>'; }
+        track.appendChild(div);
+      }
+      if(dotsEl){ dotsEl.innerHTML=''; for(var d=0;d<pages;d++){ var dot=document.createElement('button'); dot.className='carousel-dot'+(d===page?' active':''); (function(dd){dot.addEventListener('click',function(){page=dd;render();});})(d); dotsEl.appendChild(dot); } }
+      if(prev) prev.disabled=page===0; if(next) next.disabled=page>=pages-1;
+    }
+    if(prev) prev.addEventListener('click',function(){if(page>0){page--;render();}});
+    if(next) next.addEventListener('click',function(){if(page<pages-1){page++;render();}});
+    render();
+  }
+  // To add photos: add { src:'filename.jpg', alt:'Description' } to hsItems
+  var hsItems = [
+    { src:null, placeholder:'Photos coming soon' },
+    { src:null, placeholder:'Photos coming soon' },
+    { src:null, placeholder:'Photos coming soon' },
+  ];
+  initCarousel({ trackId:'hs-track', prevId:'hs-prev', nextId:'hs-next', dotsId:'hs-dots', items:hsItems });
 </script>
+
+<script>
+(function(){
+  // Sync mode from localStorage
+  var dark = localStorage.getItem('saiee-dark') === '1';
+  if (dark) document.body.classList.add('dark-mode');
+  var btns = document.querySelectorAll('.mode-toggle');
+  function applyMode(d) {
+    document.body.classList.toggle('dark-mode', d);
+    localStorage.setItem('saiee-dark', d ? '1' : '0');
+    document.querySelectorAll('.mode-toggle-label').forEach(function(el){
+      el.textContent = d ? 'Light' : 'Dark';
+    });
+    // sync circuit if present
+    if (typeof updateCircuit === 'function') updateCircuit(!d);
+  }
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){ applyMode(!document.body.classList.contains('dark-mode')); });
+  });
+  // Set initial label
+  document.querySelectorAll('.mode-toggle-label').forEach(function(el){
+    el.textContent = dark ? 'Light' : 'Dark';
+  });
+})();
+</script>
+
 </body>
 </html>
