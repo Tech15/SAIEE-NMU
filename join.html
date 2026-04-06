@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#030c18" />
+<title>How to Join SAIEE — NMU Student Chapter</title>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Syne:wght@700&family=JetBrains+Mono:wght@400&display=swap" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Syne:wght@700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Syne:wght@700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" /></noscript>
+<style>
+:root {
+  --navy:    #001e3c;
+  --navy-lt: #08305e;
+  --gold:    #F4A800;
+  --gold-dk: #c98b00;
+  --white:   #f0f4f8;
+  --muted:   #7a91ab;
+  --line:    rgba(240,244,248,0.08);
+  --bg:      #030c18;
+  --red:     #D0021B;
+  --f-disp:  'Anton', sans-serif;
+  --f-ui:    'Syne', system-ui, sans-serif;
+  --f-body:  Georgia, 'Times New Roman', serif;
+  --f-mono:  'JetBrains Mono', 'Courier New', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+* { -webkit-font-smoothing: antialiased; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--f-body);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ── TOP BAR ── */
+.top-bar {
+  height: 4px; display: flex;
+}
+.tb-g  { flex:2; background:var(--gold); }
+.tb-n  { flex:1; background:var(--navy-lt); }
+.tb-r  { flex:1; background:var(--red); }
+.tb-dk { flex:10; background:var(--line); }
+
+/* ── BACK NAV ── */
+.back-nav {
+  padding: 1.25rem 3rem;
+  display: flex; align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+.back-link {
+  font-family: var(--f-mono); font-size: .65rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  display: flex; align-items: center; gap: .5rem;
+  transition: color .2s;
+}
+.back-link:hover { color: var(--gold); }
+
+/* ── HERO ── */
+.page-hero {
+  padding: 5rem 3rem 3.5rem;
+  max-width: 1100px; margin: 0 auto;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.page-hero .eyebrow {
+  font-family: var(--f-mono); font-size: .6rem;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: .75rem;
+  display: flex; align-items: center; gap: .75rem;
+}
+.page-hero .eyebrow::before {
+  content: ''; display: inline-block;
+  width: 8px; height: 8px; background: var(--gold);
+}
+.page-hero h1 {
+  font-family: var(--f-disp);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  text-transform: uppercase; line-height: .95;
+  color: #fff; margin-bottom: 1rem;
+}
+.page-hero h1 span { color: var(--gold); }
+.page-hero p {
+  max-width: 560px; color: var(--muted);
+  font-size: 1rem; line-height: 1.8;
+}
+.hero-corner-block {
+  position: absolute; top: 0; right: 0;
+  display: flex; flex-direction: column; pointer-events: none;
+}
+.hcb-r { height:40px; width:120px; background:var(--red); opacity:.5; }
+.hcb-g { height:20px; width:120px; background:var(--gold); opacity:.65; }
+.hcb-n { height:28px; width:120px; background:var(--navy-lt); opacity:.45; }
+
+/* ── MAIN CONTENT ── */
+.page-content {
+  max-width: 1100px; margin: 0 auto;
+  padding: 4rem 3rem 6rem;
+}
+
+/* ── STEPS ── */
+.steps-intro {
+  color: var(--muted); font-size: 1rem; line-height: 1.8;
+  max-width: 600px; margin-bottom: 3.5rem;
+}
+
+.steps-list {
+  display: flex; flex-direction: column;
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line);
+  margin-bottom: 4rem;
+}
+
+.step {
+  background: rgba(0,10,28,.85);
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0;
+  position: relative;
+  transition: background .25s;
+}
+.step:hover { background: rgba(8,30,60,.9); }
+.step::before {
+  content: ''; position: absolute;
+  left:0; top:0; bottom:0; width:3px;
+  background: var(--gold); transform: scaleY(0);
+  transition: transform .3s; transform-origin: center;
+}
+.step:hover::before { transform: scaleY(1); }
+
+.step-num {
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 2rem 1rem 2rem 1.5rem;
+  font-family: var(--f-disp); font-size: 2.5rem;
+  color: rgba(244,168,0,.2); line-height: 1;
+  border-right: 1px solid var(--line);
+  transition: color .25s;
+}
+.step:hover .step-num { color: rgba(244,168,0,.5); }
+
+.step-body { padding: 2rem 2.5rem 2rem 2rem; }
+.step-body h3 {
+  font-family: var(--f-ui); font-weight: 700;
+  font-size: 1rem; color: #fff; margin-bottom: .5rem;
+}
+.step-body p {
+  font-size: .9rem; color: var(--muted); line-height: 1.75;
+}
+.step-body a {
+  color: var(--gold); text-decoration: none;
+  font-family: var(--f-mono); font-size: .8rem;
+  letter-spacing: .06em; transition: opacity .2s;
+}
+.step-body a:hover { opacity: .75; }
+.step-tag {
+  display: inline-block; margin-top: .75rem;
+  font-family: var(--f-mono); font-size: .52rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  border: 1px solid var(--line); color: var(--muted);
+  padding: .2rem .6rem;
+}
+.step-tag.free { border-color: rgba(244,168,0,.4); color: var(--gold); }
+
+/* ── INFO BOXES ── */
+.info-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--line); border: 1px solid var(--line);
+  margin-bottom: 3rem;
+}
+.info-box {
+  background: rgba(0,10,28,.8);
+  padding: 2rem 2.5rem;
+  position: relative;
+}
+.info-box::after {
+  content: ''; position: absolute;
+  top:0; left:0; right:0; height:3px;
+  background: linear-gradient(to right, var(--gold) 60%, var(--navy-lt) 60%);
+}
+.info-box h4 {
+  font-family: var(--f-ui); font-weight: 700;
+  font-size: .85rem; color: #fff; margin-bottom: .6rem;
+}
+.info-box p, .info-box li {
+  font-size: .85rem; color: var(--muted); line-height: 1.75;
+}
+.info-box ul { list-style: none; display: flex; flex-direction: column; gap: .3rem; }
+.info-box li::before {
+  content: '— '; color: var(--gold); font-family: var(--f-mono);
+}
+
+/* ── CTA ── */
+.join-cta {
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .75rem;
+  padding: .9rem 2rem;
+  background: var(--gold); color: var(--bg);
+  font-family: var(--f-ui); font-weight: 700;
+  font-size: .8rem; letter-spacing: .08em;
+  text-transform: uppercase; text-decoration: none;
+  transition: background .2s;
+}
+.btn-primary:hover { background: #ffbf2e; }
+.btn-secondary {
+  font-family: var(--f-mono); font-size: .72rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .9rem 1.6rem; border: 1px solid var(--gold);
+  color: var(--gold); text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.btn-secondary:hover { background: var(--gold); color: var(--bg); }
+.cta-note {
+  font-family: var(--f-mono); font-size: .6rem;
+  letter-spacing: .1em; color: var(--muted);
+}
+
+/* ── DS RULE ── */
+.ds-rule { display:flex; height:4px; margin:2.5rem 0; }
+.ds-rule .r-g  { flex:3; background:var(--gold); }
+.ds-rule .r-n  { flex:1; background:var(--navy-lt); }
+.ds-rule .r-r  { flex:1; background:var(--red); }
+.ds-rule .r-dk { flex:8; background:var(--line); }
+
+/* ── FOOTER MINI ── */
+footer-mini {
+  border-top: 1px solid var(--line);
+  padding: 1.5rem 3rem;
+  font-family: var(--f-mono); font-size: .58rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); display: flex;
+  justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+footer-mini a { color: var(--muted); text-decoration: none; transition: color .2s; }
+footer-mini a:hover { color: var(--gold); }
+
+@media (max-width: 768px) {
+  .back-nav { padding: 1rem 1.5rem; }
+  .page-hero { padding: 3.5rem 1.5rem 2.5rem; }
+  .page-content { padding: 3rem 1.5rem 4rem; }
+  .info-row { grid-template-columns: 1fr; }
+  .step { grid-template-columns: 56px 1fr; }
+  .step-num { font-size: 1.8rem; padding: 1.5rem .75rem 1.5rem 1rem; }
+  .step-body { padding: 1.5rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar"><div class="tb-g"></div><div class="tb-n"></div><div class="tb-r"></div><div class="tb-dk"></div></div>
+
+<nav class="back-nav">
+  <a href="index.html" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7H1M7 1L1 7l6 6"/></svg>
+    Back to Main Site
+  </a>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-corner-block"><div class="hcb-r"></div><div class="hcb-g"></div><div class="hcb-n"></div></div>
+  <div class="eyebrow">SAIEE Membership</div>
+  <h1>How to <span>Join</span><br/>as a Student</h1>
+  <p>Student membership is free, takes about 10 minutes to set up, and gives you a recognised professional credential before you even graduate. Here's exactly how to do it.</p>
+</div>
+
+<div class="page-content">
+
+  <p class="steps-intro">
+    SAIEE (South African Institute of Electrical Engineers) is the professional body for electrical engineers in South Africa. Joining as a student costs nothing and starts building the professional record you'll need for ECSA registration later. Follow the steps below.
+  </p>
+
+  <div class="steps-list">
+
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h3>Go to the SAIEE membership portal</h3>
+        <p>Open your browser and go to <a href="https://www.saiee.org.za" target="_blank">saiee.org.za</a>. Click on <strong>Membership</strong> in the top navigation, then select <strong>Apply for Membership</strong>.</p>
+        <span class="step-tag">Takes 1 min</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h3>Select "Student" as your membership category</h3>
+        <p>You'll be shown the membership tiers. Choose <strong>Student Member</strong>. This is for full-time students at an accredited institution — which NMU is. You do not need to pay anything.</p>
+        <span class="step-tag free">Free</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h3>Fill in your personal and academic details</h3>
+        <p>You'll need your full name, ID number, NMU student number, and your current year of study. Have your student card handy. Use your <strong>@mandela.ac.za</strong> email address where prompted.</p>
+        <span class="step-tag">Takes 5 min</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <h3>Upload proof of enrolment</h3>
+        <p>You'll need a proof of registration from NMU. Get this from the <strong>Student Portal</strong> (my.mandela.ac.za) — log in, go to Student Administration, and download your Proof of Registration for the current year as a PDF.</p>
+        <span class="step-tag">Takes 2 min</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <h3>Submit your application</h3>
+        <p>Review your details and submit. You'll receive a confirmation email. SAIEE processes student applications within a few business days. Once approved, you'll receive your member number.</p>
+        <span class="step-tag">Done</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <h3>Tell us you've joined</h3>
+        <p>Send your member number to the chapter so we can keep our records updated and make sure you're getting the most out of your membership. Contact us via the <a href="index.html#contact">contact section</a> on the main site.</p>
+        <span class="step-tag">Optional but encouraged</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ds-rule"><div class="r-g"></div><div class="r-n"></div><div class="r-r"></div><div class="r-dk"></div></div>
+
+  <div class="info-row">
+    <div class="info-box">
+      <h4>What you get as a student member</h4>
+      <ul>
+        <li>Official SAIEE member number and certificate</li>
+        <li>Access to SAIEE publications and events</li>
+        <li>Discounted rates on professional development events</li>
+        <li>Professional standing you can list on your CV</li>
+        <li>A head start on ECSA candidate registration after graduation</li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <h4>What happens after you graduate</h4>
+      <p>When you graduate, your Student membership rolls over to Associate Member — the next tier. As you accumulate work experience under a registered engineer, you build your ECSA candidacy record. The chapter will host sessions on this process specifically for final-year students.</p>
+    </div>
+  </div>
+
+  <div class="ds-rule"><div class="r-g"></div><div class="r-n"></div><div class="r-r"></div><div class="r-dk"></div></div>
+
+  <div class="join-cta">
+    <a href="https://www.saiee.org.za" target="_blank" class="btn-primary">
+      Go to SAIEE Website
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6.5h11M6.5 1l5.5 5.5-5.5 5.5"/></svg>
+    </a>
+    <a href="index.html#contact" class="btn-secondary">Ask the Chapter</a>
+    <span class="cta-note">Student membership is free · No credit card needed</span>
+  </div>
+
+</div>
+
+<div style="border-top:1px solid var(--line);padding:1.5rem 3rem;font-family:var(--f-mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+  <span>© 2026 Nelson Mandela University · SAIEE Student Chapter</span>
+  <a href="index.html" style="color:var(--muted);text-decoration:none;">← Back to main site</a>
+</div>
+
+</body>
+</html>

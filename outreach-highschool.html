@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#030c18" />
+<title>High School Outreach — NMU SAIEE Student Chapter</title>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Syne:wght@700&family=JetBrains+Mono:wght@400&display=swap" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Syne:wght@700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Syne:wght@700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" /></noscript>
+<style>
+:root {
+  --navy:    #001e3c;
+  --navy-lt: #08305e;
+  --gold:    #F4A800;
+  --white:   #f0f4f8;
+  --muted:   #7a91ab;
+  --line:    rgba(240,244,248,0.08);
+  --bg:      #030c18;
+  --red:     #D0021B;
+  --f-disp:  'Anton', sans-serif;
+  --f-ui:    'Syne', system-ui, sans-serif;
+  --f-body:  Georgia, 'Times New Roman', serif;
+  --f-mono:  'JetBrains Mono', 'Courier New', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+* { -webkit-font-smoothing: antialiased; }
+body { background: var(--bg); color: var(--white); font-family: var(--f-body); font-size: 1.05rem; line-height: 1.75; overflow-x: hidden; }
+
+.top-bar { height: 4px; display: flex; }
+.tb-g  { flex:2; background:var(--gold); }
+.tb-n  { flex:1; background:var(--navy-lt); }
+.tb-r  { flex:1; background:var(--red); }
+.tb-dk { flex:10; background:var(--line); }
+
+.back-nav { padding: 1.25rem 3rem; display: flex; align-items: center; border-bottom: 1px solid var(--line); }
+.back-link { font-family: var(--f-mono); font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: .5rem; transition: color .2s; }
+.back-link:hover { color: var(--gold); }
+
+/* ── PAGE HERO ── */
+.page-hero {
+  position: relative; overflow: hidden;
+  padding: 5rem 3rem 4rem;
+  background: linear-gradient(160deg, #001228 0%, #001e3c 40%, #030c18 100%);
+  border-bottom: 1px solid var(--line);
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; }
+.eyebrow {
+  font-family: var(--f-mono); font-size: .6rem; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: .75rem;
+  display: flex; align-items: center; gap: .75rem;
+}
+.eyebrow::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--gold); }
+h1 { font-family: var(--f-disp); font-size: clamp(2.5rem, 6vw, 5rem); text-transform: uppercase; line-height: .95; color: #fff; margin-bottom: 1.25rem; }
+h1 span { color: var(--gold); }
+.hero-lead { max-width: 580px; color: var(--muted); font-size: 1rem; line-height: 1.85; }
+.hero-corner { position: absolute; top: 0; right: 0; display: flex; flex-direction: column; pointer-events: none; }
+.hc-r { height:40px; width:120px; background:var(--red); opacity:.5; }
+.hc-g { height:20px; width:120px; background:var(--gold); opacity:.65; }
+.hc-n { height:28px; width:120px; background:var(--navy-lt); opacity:.45; }
+.hero-left-stripe { position:absolute; top:0; left:0; bottom:0; width:4px; background: linear-gradient(to bottom, var(--gold) 60%, var(--navy-lt) 40%); }
+
+/* ── CONTENT ── */
+.page-wrap { max-width: 1100px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+
+/* ── PHOTO GRID ── */
+.section-label {
+  font-family: var(--f-mono); font-size: .6rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: .75rem;
+}
+.section-label::before { content: ''; display:inline-block; width:8px; height:8px; background:var(--gold); }
+
+h2 { font-family: var(--f-disp); font-size: clamp(2rem, 4vw, 3.2rem); text-transform: uppercase; color: #fff; line-height: .95; margin-bottom: 1.5rem; }
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-bottom: 1rem;
+}
+.photo-item {
+  position: relative; overflow: hidden;
+  aspect-ratio: 4/3;
+  background: rgba(0,20,50,.6);
+  cursor: pointer;
+}
+.photo-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .4s ease, opacity .3s ease;
+  loading: lazy;
+}
+.photo-item:hover img { transform: scale(1.04); opacity: .85; }
+.photo-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(3,12,24,.9) 0%, transparent 100%);
+  padding: 1.5rem .875rem .625rem;
+  font-family: var(--f-mono); font-size: .55rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  opacity: 0; transition: opacity .3s;
+}
+.photo-item:hover .photo-caption { opacity: 1; }
+.photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: .75rem;
+  color: rgba(122,145,171,.35);
+  font-family: var(--f-mono); font-size: .55rem;
+  letter-spacing: .12em; text-transform: uppercase;
+}
+.photo-placeholder svg { opacity: .25; }
+.photo-note {
+  font-family: var(--f-mono); font-size: .6rem; letter-spacing: .1em;
+  color: var(--muted); margin-bottom: 3rem;
+}
+
+/* ── DS RULE ── */
+.ds-rule { display:flex; height:4px; margin:2.5rem 0; }
+.ds-rule .r-g  { flex:3; background:var(--gold); }
+.ds-rule .r-n  { flex:1; background:var(--navy-lt); }
+.ds-rule .r-r  { flex:1; background:var(--red); }
+.ds-rule .r-dk { flex:8; background:var(--line); }
+
+/* ── BODY TEXT ── */
+.content-block { max-width: 700px; margin-bottom: 3rem; }
+.content-block p { color: rgba(240,244,248,.72); font-size: .98rem; line-height: 1.85; margin-bottom: 1.1rem; }
+.content-block p:last-child { margin-bottom: 0; }
+.content-block strong { color: var(--white); }
+
+/* ── STATS ROW ── */
+.stats-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); margin-bottom: 3rem;
+}
+.stat-box {
+  background: rgba(0,10,28,.8); padding: 2rem 1.75rem;
+  position: relative;
+}
+.stat-box::before { content: ''; position: absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(to right, var(--gold) 50%, var(--navy-lt) 50%); }
+.stat-num { font-family: var(--f-disp); font-size: 2.8rem; color: var(--gold); line-height: 1; margin-bottom: .4rem; }
+.stat-label { font-family: var(--f-mono); font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
+
+/* ── WHAT WE DO LIST ── */
+.what-list {
+  display: flex; flex-direction: column; gap: 1px;
+  background: var(--line); border: 1px solid var(--line);
+  margin-bottom: 3rem;
+}
+.what-item {
+  background: rgba(0,10,28,.8); padding: 1.5rem 2rem;
+  display: grid; grid-template-columns: 2rem 1fr;
+  align-items: start; gap: 1.25rem;
+  position: relative; transition: background .2s;
+}
+.what-item:hover { background: rgba(8,30,60,.9); }
+.what-item::before { content: ''; position: absolute; left:0; top:0; bottom:0; width:3px; background:var(--gold); transform:scaleY(0); transition:transform .25s; transform-origin:center; }
+.what-item:hover::before { transform:scaleY(1); }
+.what-num { font-family: var(--f-mono); font-size: .6rem; letter-spacing: .1em; color: var(--gold); padding-top: .15rem; }
+.what-text h4 { font-family: var(--f-ui); font-weight: 700; font-size: .92rem; color: #fff; margin-bottom: .3rem; }
+.what-text p { font-size: .85rem; color: var(--muted); line-height: 1.7; }
+
+/* ── CTA ── */
+.page-cta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.btn-primary { display:inline-flex; align-items:center; gap:.75rem; padding:.9rem 2rem; background:var(--gold); color:var(--bg); font-family:var(--f-ui); font-weight:700; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; transition:background .2s; }
+.btn-primary:hover { background:#ffbf2e; }
+.btn-secondary { font-family:var(--f-mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; padding:.9rem 1.6rem; border:1px solid var(--gold); color:var(--gold); text-decoration:none; transition:background .2s, color .2s; }
+.btn-secondary:hover { background:var(--gold); color:var(--bg); }
+
+/* ── LIGHTBOX ── */
+.lightbox { position:fixed; inset:0; z-index:600; background:rgba(3,12,24,0); display:flex; align-items:center; justify-content:center; pointer-events:none; transition:background .3s; }
+.lightbox.open { background:rgba(3,12,24,.95); pointer-events:all; }
+.lightbox img { max-width:90vw; max-height:85vh; object-fit:contain; opacity:0; transform:scale(.96); transition:opacity .3s, transform .3s; }
+.lightbox.open img { opacity:1; transform:scale(1); }
+.lb-close { position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:var(--muted); font-size:1.5rem; cursor:pointer; transition:color .2s; }
+.lb-close:hover { color:#fff; }
+
+/* ── FOOTER ── */
+.page-footer { border-top:1px solid var(--line); padding:1.5rem 3rem; font-family:var(--f-mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+.page-footer a { color:var(--muted); text-decoration:none; transition:color .2s; }
+.page-footer a:hover { color:var(--gold); }
+
+@media (max-width: 768px) {
+  .back-nav, .page-footer { padding: 1rem 1.5rem; }
+  .page-hero { padding: 3.5rem 1.5rem 2.5rem; }
+  .page-wrap { padding: 2.5rem 1.5rem 4rem; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .photo-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .stats-row { grid-template-columns: 1fr; }
+  .photo-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar"><div class="tb-g"></div><div class="tb-n"></div><div class="tb-r"></div><div class="tb-dk"></div></div>
+
+<nav class="back-nav">
+  <a href="index.html#outreach" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7H1M7 1L1 7l6 6"/></svg>
+    Back to Outreach
+  </a>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-left-stripe"></div>
+  <div class="hero-corner"><div class="hc-r"></div><div class="hc-g"></div><div class="hc-n"></div></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Outreach · Schools</div>
+    <h1>High School<br/><span>Outreach</span></h1>
+    <p class="hero-lead">Chapter members visit local schools to bring the conversation about electrical engineering to students who don't always get it. We talk about the degree, the profession, and the path — honestly, not as a sales pitch.</p>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-num">—</div>
+      <div class="stat-label">Schools visited to date</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">—</div>
+      <div class="stat-label">Students reached</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">GE</div>
+      <div class="stat-label">Focus area · Gqeberha / Eastern Cape</div>
+    </div>
+  </div>
+
+  <!-- What we do -->
+  <div class="section-label">What We Do</div>
+  <div class="what-list">
+    <div class="what-item">
+      <span class="what-num">01</span>
+      <div class="what-text">
+        <h4>Career talks</h4>
+        <p>Chapter members go to schools and talk to Grade 11 and 12 learners about electrical engineering — what you actually study, what jobs exist, and what the career looks like. No jargon, no recruitment pitch.</p>
+      </div>
+    </div>
+    <div class="what-item">
+      <span class="what-num">02</span>
+      <div class="what-text">
+        <h4>University application guidance</h4>
+        <p>We walk learners through what NMU's engineering programme requires, how to apply, and what NSFAS and bursary options are available. A lot of capable students don't apply because nobody explained the process.</p>
+      </div>
+    </div>
+    <div class="what-item">
+      <span class="what-num">03</span>
+      <div class="what-text">
+        <h4>Q&amp;A with current students</h4>
+        <p>Learners get to ask us — actual engineering students — what university is really like. We answer honestly. The goal is informed decisions, not inflated expectations.</p>
+      </div>
+    </div>
+    <div class="what-item">
+      <span class="what-num">04</span>
+      <div class="what-text">
+        <h4>Focus on underserved schools</h4>
+        <p>We specifically target schools that don't regularly receive this kind of engagement. Engineering as a career path is often invisible in communities where it could make the most difference.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-rule"><div class="r-g"></div><div class="r-n"></div><div class="r-r"></div><div class="r-dk"></div></div>
+
+  <!-- Photos -->
+  <div class="section-label">Photos</div>
+  <div class="photo-grid">
+    <!-- TO ADD PHOTOS: replace each placeholder div with:
+         <div class="photo-item">
+           <img src="your-photo.jpg" alt="Description" loading="lazy">
+           <div class="photo-caption">Caption text</div>
+         </div>
+    -->
+    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Add photo here</div></div>
+    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Add photo here</div></div>
+    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Add photo here</div></div>
+    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Add photo here</div></div>
+  </div>
+  <p class="photo-note">Photos will be added after visits. To add: upload image files to your GitHub repo, then replace the placeholder divs above with &lt;img&gt; tags pointing to your file names.</p>
+
+  <div class="ds-rule"><div class="r-g"></div><div class="r-n"></div><div class="r-r"></div><div class="r-dk"></div></div>
+
+  <!-- About the initiative -->
+  <div class="section-label">About the Initiative</div>
+  <div class="content-block">
+    <p>The High School Outreach programme started from a simple observation: many students who would make excellent engineers never consider engineering because no one in their immediate environment is an engineer. The gap isn't ability — it's visibility.</p>
+    <p>Chapter members volunteer their time to visit schools, particularly those in communities that are underrepresented in engineering at NMU. We're not there to sell the university. We're there to make sure capable learners know the path exists and what it actually involves.</p>
+    <p>If you're a <strong>school teacher or principal</strong> who'd like us to visit, or an <strong>NMU student</strong> who wants to volunteer for an outreach visit, get in touch via the contact section below.</p>
+  </div>
+
+  <div class="page-cta">
+    <a href="index.html#contact" class="btn-primary">
+      Get In Touch
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6.5h11M6.5 1l5.5 5.5-5.5 5.5"/></svg>
+    </a>
+    <a href="index.html#outreach" class="btn-secondary">← All Outreach</a>
+  </div>
+
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lb-close">✕</button>
+  <img id="lb-img" src="" alt="" />
+</div>
+
+<div class="page-footer">
+  <span>© 2026 Nelson Mandela University · SAIEE Student Chapter</span>
+  <a href="index.html">← Back to main site</a>
+</div>
+
+<script>
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  document.querySelectorAll('.photo-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click', () => {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+  lb.addEventListener('click', e => {
+    if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  });
+</script>
+</body>
+</html>

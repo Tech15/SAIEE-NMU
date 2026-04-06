@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#030c18" />
+<title>Laboratory Tours — NMU SAIEE Student Chapter</title>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Syne:wght@700&family=JetBrains+Mono:wght@400&display=swap" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Syne:wght@700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Syne:wght@700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" /></noscript>
+<style>
+:root {
+  --navy:    #001e3c;
+  --navy-lt: #08305e;
+  --gold:    #F4A800;
+  --white:   #f0f4f8;
+  --muted:   #7a91ab;
+  --line:    rgba(240,244,248,0.08);
+  --bg:      #030c18;
+  --red:     #D0021B;
+  --f-disp:  'Anton', sans-serif;
+  --f-ui:    'Syne', system-ui, sans-serif;
+  --f-body:  Georgia, 'Times New Roman', serif;
+  --f-mono:  'JetBrains Mono', 'Courier New', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+* { -webkit-font-smoothing: antialiased; }
+body { background: var(--bg); color: var(--white); font-family: var(--f-body); font-size: 1.05rem; line-height: 1.75; overflow-x: hidden; }
+
+.top-bar { height: 4px; display: flex; }
+.tb-g { flex:2; background:var(--gold); } .tb-n { flex:1; background:var(--navy-lt); } .tb-r { flex:1; background:var(--red); } .tb-dk { flex:10; background:var(--line); }
+
+.back-nav { padding: 1.25rem 3rem; display: flex; align-items: center; border-bottom: 1px solid var(--line); }
+.back-link { font-family: var(--f-mono); font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: .5rem; transition: color .2s; }
+.back-link:hover { color: var(--gold); }
+
+.page-hero { position: relative; overflow: hidden; padding: 5rem 3rem 4rem; background: linear-gradient(160deg, #001228 0%, #001e3c 40%, #030c18 100%); border-bottom: 1px solid var(--line); }
+.hero-inner { max-width: 1100px; margin: 0 auto; }
+.eyebrow { font-family: var(--f-mono); font-size: .6rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); margin-bottom: .75rem; display: flex; align-items: center; gap: .75rem; }
+.eyebrow::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--gold); }
+h1 { font-family: var(--f-disp); font-size: clamp(2.5rem, 6vw, 5rem); text-transform: uppercase; line-height: .95; color: #fff; margin-bottom: 1.25rem; }
+h1 span { color: var(--gold); }
+.hero-lead { max-width: 580px; color: var(--muted); font-size: 1rem; line-height: 1.85; }
+.hero-corner { position: absolute; top: 0; right: 0; display: flex; flex-direction: column; pointer-events: none; }
+.hc-r { height:40px; width:120px; background:var(--red); opacity:.5; }
+.hc-g { height:20px; width:120px; background:var(--gold); opacity:.65; }
+.hc-n { height:28px; width:120px; background:var(--navy-lt); opacity:.45; }
+.hero-left-stripe { position:absolute; top:0; left:0; bottom:0; width:4px; background: linear-gradient(to bottom, var(--gold) 60%, var(--navy-lt) 40%); }
+
+.page-wrap { max-width: 1100px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+
+.section-label { font-family: var(--f-mono); font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; display: flex; align-items: center; gap: .75rem; }
+.section-label::before { content: ''; display:inline-block; width:8px; height:8px; background:var(--gold); }
+h2 { font-family: var(--f-disp); font-size: clamp(2rem, 4vw, 3.2rem); text-transform: uppercase; color: #fff; line-height: .95; margin-bottom: 1.5rem; }
+
+/* ── LAB CARDS ── */
+.lab-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--line); border: 1px solid var(--line);
+  margin-bottom: 3rem;
+}
+.lab-card {
+  background: rgba(0,10,28,.85); padding: 2.5rem 2rem;
+  position: relative; transition: background .25s;
+}
+.lab-card:hover { background: rgba(8,30,60,.9); }
+.lab-card::before { content: ''; position: absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(to right, var(--gold) 50%, var(--red) 50%); }
+.lab-icon { width: 36px; height: 36px; color: var(--gold); margin-bottom: 1.25rem; }
+.lab-card h3 { font-family: var(--f-ui); font-weight: 700; font-size: 1rem; color: #fff; margin-bottom: .5rem; }
+.lab-card p { font-size: .87rem; color: var(--muted); line-height: 1.75; }
+.lab-tag { display: inline-block; margin-top: .75rem; font-family: var(--f-mono); font-size: .52rem; letter-spacing: .14em; text-transform: uppercase; border: 1px solid rgba(244,168,0,.3); color: var(--gold); padding: .2rem .6rem; }
+
+/* ── PHOTO GRID ── */
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 1rem; }
+.photo-item { position: relative; overflow: hidden; aspect-ratio: 4/3; background: rgba(0,20,50,.6); cursor: pointer; }
+.photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease, opacity .3s ease; }
+.photo-item:hover img { transform: scale(1.04); opacity: .85; }
+.photo-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(3,12,24,.9) 0%, transparent 100%); padding: 1.5rem .875rem .625rem; font-family: var(--f-mono); font-size: .55rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); opacity: 0; transition: opacity .3s; }
+.photo-item:hover .photo-caption { opacity: 1; }
+.photo-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .75rem; color: rgba(122,145,171,.35); font-family: var(--f-mono); font-size: .55rem; letter-spacing: .12em; text-transform: uppercase; }
+.photo-note { font-family: var(--f-mono); font-size: .6rem; letter-spacing: .1em; color: var(--muted); margin-bottom: 3rem; }
+
+.ds-rule { display:flex; height:4px; margin:2.5rem 0; }
+.ds-rule .r-g { flex:3; background:var(--gold); } .ds-rule .r-n { flex:1; background:var(--navy-lt); } .ds-rule .r-r { flex:1; background:var(--red); } .ds-rule .r-dk { flex:8; background:var(--line); }
+
+.content-block { max-width: 700px; margin-bottom: 3rem; }
+.content-block p { color: rgba(240,244,248,.72); font-size: .98rem; line-height: 1.85; margin-bottom: 1.1rem; }
+.content-block strong { color: var(--white); }
+
+/* ── SWEAT CALLOUT ── */
+.sweat-callout {
+  border: 1px solid var(--line); background: rgba(0,30,60,.5);
+  padding: 2.5rem; margin-bottom: 3rem;
+  display: grid; grid-template-columns: auto 1fr; gap: 2rem;
+  align-items: start; position: relative;
+}
+.sweat-callout::before { content: ''; position: absolute; left:0; top:0; bottom:0; width:4px; background: linear-gradient(to bottom, var(--gold) 50%, var(--red) 50%); }
+.sweat-label { font-family: var(--f-disp); font-size: 1.6rem; text-transform: uppercase; color: var(--gold); line-height: 1; white-space: nowrap; }
+.sweat-body h4 { font-family: var(--f-ui); font-weight: 700; font-size: .95rem; color: #fff; margin-bottom: .5rem; }
+.sweat-body p { font-size: .88rem; color: var(--muted); line-height: 1.75; }
+
+.page-cta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.btn-primary { display:inline-flex; align-items:center; gap:.75rem; padding:.9rem 2rem; background:var(--gold); color:var(--bg); font-family:var(--f-ui); font-weight:700; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; transition:background .2s; }
+.btn-primary:hover { background:#ffbf2e; }
+.btn-secondary { font-family:var(--f-mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; padding:.9rem 1.6rem; border:1px solid var(--gold); color:var(--gold); text-decoration:none; transition:background .2s, color .2s; }
+.btn-secondary:hover { background:var(--gold); color:var(--bg); }
+
+.lightbox { position:fixed; inset:0; z-index:600; background:rgba(3,12,24,0); display:flex; align-items:center; justify-content:center; pointer-events:none; transition:background .3s; }
+.lightbox.open { background:rgba(3,12,24,.95); pointer-events:all; }
+.lightbox img { max-width:90vw; max-height:85vh; object-fit:contain; opacity:0; transform:scale(.96); transition:opacity .3s, transform .3s; }
+.lightbox.open img { opacity:1; transform:scale(1); }
+.lb-close { position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:var(--muted); font-size:1.5rem; cursor:pointer; transition:color .2s; }
+.lb-close:hover { color:#fff; }
+
+.page-footer { border-top:1px solid var(--line); padding:1.5rem 3rem; font-family:var(--f-mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+.page-footer a { color:var(--muted); text-decoration:none; transition:color .2s; }
+.page-footer a:hover { color:var(--gold); }
+
+@media (max-width: 768px) {
+  .back-nav, .page-footer { padding: 1rem 1.5rem; }
+  .page-hero { padding: 3.5rem 1.5rem 2.5rem; }
+  .page-wrap { padding: 2.5rem 1.5rem 4rem; }
+  .lab-grid { grid-template-columns: 1fr; }
+  .sweat-callout { grid-template-columns: 1fr; }
+  .photo-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .photo-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar"><div class="tb-g"></div><div class="tb-n"></div><div class="tb-r"></div><div class="tb-dk"></div></div>
+
+<nav class="back-nav">
+  <a href="index.html#outreach" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7H1M7 1L1 7l6 6"/></svg>
+    Back to Outreach
+  </a>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-left-stripe"></div>
+  <div class="hero-corner"><div class="hc-r"></div><div class="hc-g"></div><div class="hc-n"></div></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Outreach · Campus</div>
+    <h1>NMU <span>Laboratory</span><br/>Tours</h1>
+    <p class="hero-lead">We open up the Electrical Engineering labs and take visiting groups through what studying engineering at NMU actually looks like — the equipment, the experiments, the people who use them every day.</p>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- Labs covered -->
+  <div class="section-label">What You'll See</div>
+  <div class="lab-grid">
+    <div class="lab-card">
+      <svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      <h3>Electronics &amp; Circuit Lab</h3>
+      <p>Hands-on workspace for circuit design, measurement, and testing. Home to oscilloscopes, signal generators, and PCB prototyping stations used in undergraduate practical work.</p>
+      <span class="lab-tag">Electrical Engineering</span>
+    </div>
+    <div class="lab-card">
+      <svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      <h3>Power Systems Lab</h3>
+      <p>Equipment for high-voltage and power electronics experiments. Students work with transformers, motor drives, and protection relay systems that mirror real utility infrastructure.</p>
+      <span class="lab-tag">Electrical Engineering</span>
+    </div>
+    <div class="lab-card">
+      <svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <h3>Control Systems Lab</h3>
+      <p>PLC programming, feedback control systems, and automation experiments. Reflects the industrial side of electrical engineering and what students go on to work with in the field.</p>
+      <span class="lab-tag">Electrical Engineering</span>
+    </div>
+    <div class="lab-card">
+      <svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <h3>Computer &amp; Software Lab</h3>
+      <p>Workstations used for simulation, MATLAB, CAD, and embedded systems programming. Where the theoretical design work gets turned into something that can be tested and verified.</p>
+      <span class="lab-tag">Electrical Engineering</span>
+    </div>
+  </div>
+
+  <!-- SWEAT Lab callout -->
+  <div class="sweat-callout">
+    <div class="sweat-label">SWEAT<br/>LAB</div>
+    <div class="sweat-body">
+      <h4>The SWEAT Lab — Mapungubwe Building, Industrial Engineering</h4>
+      <p>As part of extended campus tours, groups can also visit the <strong>SWEAT Lab</strong> — NMU's state-of-the-art Industrial Engineering facility housed in the Mapungubwe building. Equipped with advanced simulation software, sophisticated manufacturing equipment, and open collaborative workspaces, the SWEAT Lab shows what engineering looks like when it intersects with production, systems, and industry. It's a tangible demonstration of where the discipline goes beyond the classroom.</p>
+    </div>
+  </div>
+
+  <div class="ds-rule"><div class="r-g"></div><div class="r-n"></div><div class="r-r"></div><div class="r-dk"></div></div>
+
+  <!-- Photos -->
+  <div class="section-label">Photos</div>
+  <div class="photo-grid">
+    <!-- Replace placeholder divs with real photos:
+         <div class="photo-item">
+           <img src="lab-electronics.jpg" alt="Electronics lab" loading="lazy">
+           <div class="photo-caption">Electronics Lab</div>
+         </div>
+    -->
+    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Electronics Lab</div></div>
+    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Power Systems Lab</div></div>
+    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Control Systems Lab</div></div>
+    <div class="photo-item"><div class="photo-placeholder"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>SWEAT Lab</div></div>
+  </div>
+  <p class="photo-note">Lab photos coming soon. To add: upload images to your GitHub repo and replace the placeholder divs with &lt;img&gt; tags.</p>
+
+  <div class="ds-rule"><div class="r-g"></div><div class="r-n"></div><div class="r-r"></div><div class="r-dk"></div></div>
+
+  <div class="section-label">Book a Tour</div>
+  <div class="content-block">
+    <p>Tours are open to <strong>high school groups, prospective students, and community organisations</strong>. We coordinate with the department to schedule visits around the academic calendar. Tours are guided by chapter members who are currently studying in these labs.</p>
+    <p>If you're a teacher, parent, or school coordinator looking to arrange a visit — or an NMU student who'd like to help run tours — reach out through the contact section on the main site.</p>
+  </div>
+
+  <div class="page-cta">
+    <a href="index.html#contact" class="btn-primary">
+      Request a Tour
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6.5h11M6.5 1l5.5 5.5-5.5 5.5"/></svg>
+    </a>
+    <a href="index.html#outreach" class="btn-secondary">← All Outreach</a>
+  </div>
+
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lb-close">✕</button>
+  <img id="lb-img" src="" alt="" />
+</div>
+
+<div class="page-footer">
+  <span>© 2026 Nelson Mandela University · SAIEE Student Chapter</span>
+  <a href="index.html">← Back to main site</a>
+</div>
+
+<script>
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  document.querySelectorAll('.photo-item img').forEach(img => {
+    img.addEventListener('click', () => { lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  });
+  document.getElementById('lb-close').addEventListener('click', () => { lb.classList.remove('open'); document.body.style.overflow = ''; });
+  lb.addEventListener('click', e => { if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; } });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; } });
+</script>
+</body>
+</html>
